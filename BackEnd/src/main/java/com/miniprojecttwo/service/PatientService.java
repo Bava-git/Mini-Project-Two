@@ -22,6 +22,10 @@ public class PatientService {
         return patientRepository.findByPatientEmail(PatientEmail);
     }
 
+    public Patient findBypatientContact(String patientContact){
+        return patientRepository.findBypatientContact(patientContact);
+    }
+
     public Patient createPatient(Patient patient) {
         return patientRepository.save(patient);
     }

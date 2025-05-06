@@ -19,6 +19,10 @@ public class MedicationManagerService {
         return medicationManagerRepository.findBymedicineId(medicineId);
     }
 
+    public List<MedicationManager> listBypatientappointment_id(String patientappointmentId) {
+        return medicationManagerRepository.findBypatientappointmentId(patientappointmentId);
+    }
+
     public MedicationManager createMedication(MedicationManager medicationManager) {
         return medicationManagerRepository.save(medicationManager);
     }

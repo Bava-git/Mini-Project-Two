@@ -1,10 +1,12 @@
 package com.miniprojecttwo.controller;
 
 import com.miniprojecttwo.entity.AppointmentManager;
+import com.miniprojecttwo.entity.Credential;
 import com.miniprojecttwo.service.AppointmentManagerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,12 @@ public class AppointmentManagerController {
 
     @PostMapping("/add")
     public ResponseEntity<?> createAppointment(@RequestBody AppointmentManager appointmentManager) {
+
+        AppointmentManager isExist = appointmentManagerService.findByappointmentId(appointmentManager.getAppointmentId());
+        if (isExist != null) {
+            return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + appointmentManager.getAppointmentId());
+        }
+
         AppointmentManager app = appointmentManagerService.createAppointment(appointmentManager);
         if (app != null) {
             return new ResponseEntity<>(app, HttpStatus.CREATED); // 201 CREATED
@@ -56,6 +64,7 @@ public class AppointmentManagerController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/delete/{appointmentId}")
     public ResponseEntity<?> deleteAppointment(@PathVariable String appointmentId) {
         int isDeleted = appointmentManagerService.deleteAppointment(appointmentId);

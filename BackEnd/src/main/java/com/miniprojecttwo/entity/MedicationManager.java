@@ -30,6 +30,26 @@ public class MedicationManager {
     @Size(min = 3, max = 30)
     private String medicineName;
 
+    @Column(name = "medicine_days")
+    @JsonProperty("medicine_days")
+    private int medicineDays;
+
+    @Column(name = "medicine_Morning")
+    @JsonProperty("medicine_Morning")
+    private boolean medicineMorning;
+
+    @Column(name = "medicine_Afternoon")
+    @JsonProperty("medicine_Afternoon")
+    private boolean medicineAfternoon;
+
+    @Column(name = "medicine_night")
+    @JsonProperty("medicine_night")
+    private boolean medicineNight;
+
+    @Column(name = "medicine_afterfood")
+    @JsonProperty("medicine_afterfood")
+    private boolean medicineAfterFood;
+
     @Column(name = "doctor_id")
     @JsonProperty("doctor_id")
     private String doctorId;
@@ -56,4 +76,8 @@ public class MedicationManager {
     @FutureOrPresent
     @NotNull
     private LocalDateTime appointmentDateTime;
+
+    @Column(name = "patientappointment_id")
+    @JsonProperty("patientappointment_id")
+    private String patientappointmentId;
 }

@@ -3,18 +3,20 @@ package com.miniprojecttwo.controller;
 import com.miniprojecttwo.entity.MedicationManager;
 import com.miniprojecttwo.service.MedicationManagerService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/medication")
-@CrossOrigin("")
-@AllArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class MedicationManagerController {
 
+    @Autowired
     private MedicationManagerService medicationManagerService;
 
     @GetMapping("/id/{MedicationId}")
@@ -24,6 +26,16 @@ public class MedicationManagerController {
             return ResponseEntity.ok(medic); // 200 OK
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("MedicationManager not found, " + MedicationId); // 404 NOT_FOUND
+        }
+    }
+
+    @GetMapping("/patientappointmentid/{patientappointmentId}")
+    public ResponseEntity<?> listBypatientappointment_id(@PathVariable String patientappointmentId) {
+        List<MedicationManager> medic = medicationManagerService.listBypatientappointment_id(patientappointmentId);
+        if (medic != null) {
+            return ResponseEntity.ok(medic); // 200 OK
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("MedicationManager not found, " + patientappointmentId); // 404 NOT_FOUND
         }
     }
 
@@ -56,6 +68,7 @@ public class MedicationManagerController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/delete/{MedicationId}")
     public ResponseEntity<?> deleteMedication(@PathVariable String MedicationId) {
         int isDeleted = medicationManagerService.deleteMedication(MedicationId);

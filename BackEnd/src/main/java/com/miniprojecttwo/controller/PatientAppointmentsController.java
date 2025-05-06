@@ -1,21 +1,24 @@
 package com.miniprojecttwo.controller;
 
+import com.miniprojecttwo.entity.Credential;
 import com.miniprojecttwo.entity.PatientAppointments;
 import com.miniprojecttwo.service.PatientAppointmentsService;
 import com.miniprojecttwo.service.PatientAppointmentsService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/patientappointments")
-@CrossOrigin("")
-@AllArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class PatientAppointmentsController {
 
+    @Autowired
     private PatientAppointmentsService patientAppointmentsService;
 
     @GetMapping("/id/{patientappointmentId}")
@@ -30,6 +33,15 @@ public class PatientAppointmentsController {
 
     @PostMapping("/add")
     public ResponseEntity<?> createPatientAppointments(@RequestBody PatientAppointments patientAppointments) {
+
+        System.out.println("patientAppointments " +patientAppointments);
+
+        PatientAppointments isUserExist = patientAppointmentsService.findBypatientappointmentId(patientAppointments.getPatientappointmentId());
+        System.out.println(isUserExist);
+        if (isUserExist != null) {
+            return ResponseEntity.status(HttpStatus.FOUND).body("Appointment already exist " + patientAppointments.getPatientappointmentId());
+        }
+
         PatientAppointments patapp = patientAppointmentsService.createPatientAppointments(patientAppointments);
         if (patapp != null) {
             return new ResponseEntity<>(patapp, HttpStatus.CREATED); // 201 CREATED
@@ -57,6 +69,7 @@ public class PatientAppointmentsController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/delete/{patientappointmentId}")
     public ResponseEntity<?> deletePatientAppointments(@PathVariable String patientappointmentId) {
         int isDeleted = patientAppointmentsService.deletePatientAppointments(patientappointmentId);

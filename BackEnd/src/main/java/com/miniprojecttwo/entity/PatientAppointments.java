@@ -41,6 +41,16 @@ public class PatientAppointments {
     @Size(min = 3, max = 30)
     private String doctorName;
 
+    @Column(name = "doctor_education")
+    @JsonProperty("doctor_education")
+    @NotBlank
+    private String doctorEducation;
+
+    @Column(name = "doctor_specializedfield")
+    @JsonProperty("doctor_specializedfield")
+    @NotBlank
+    private String doctorSpecializedField;
+
     @Column(name = "patient_id")
     @JsonProperty("patient_id")
     private String patientId;
@@ -50,4 +60,14 @@ public class PatientAppointments {
     @NotBlank
     @Size(min = 3, max = 30)
     private String patientName;
+
+    @Column(name = "patient_age")
+    @JsonProperty("patient_age")
+    private int patientAge;
+
+    @Column(name = "patient_issue")
+    @JsonProperty("patient_issue")
+    @NotBlank
+    private String patientIssue;
+
 }

@@ -32,17 +32,15 @@ public class AppointmentManager {
     @NotNull
     private LocalDate appointmentDate;
 
-    @Column(name = "appointment_StartTime")
-    @JsonProperty("appointment_StartTime")
+    @Column(name = "appointment_start_time")
+    @JsonProperty("appointment_start_time")
     @DateTimeFormat(pattern = "hh:mm a")
-    @FutureOrPresent
     @NotNull
     private LocalTime appointmentStartTime;
 
-    @Column(name = "appointment_EndTime")
-    @JsonProperty("appointment_EndTime")
+    @Column(name = "appointment_end_time")
+    @JsonProperty("appointment_end_time")
     @DateTimeFormat(pattern = "hh:mm a")
-    @FutureOrPresent
     @NotNull
     private LocalTime appointmentEndTime;
 
@@ -55,5 +53,15 @@ public class AppointmentManager {
     @NotBlank
     @Size(min = 3, max = 30)
     private String doctorName;
+
+    @Column(name = "doctor_education")
+    @JsonProperty("doctor_education")
+    @NotBlank
+    private String doctorEducation;
+
+    @Column(name = "doctor_specializedfield")
+    @JsonProperty("doctor_specializedfield")
+    @NotBlank
+    private String doctorSpecializedField;
 
 }

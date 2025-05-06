@@ -1,20 +1,24 @@
 package com.miniprojecttwo.controller;
 
+import com.miniprojecttwo.entity.AppointmentManager;
 import com.miniprojecttwo.entity.Patient;
 import com.miniprojecttwo.service.PatientService;
+import jakarta.annotation.security.PermitAll;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/patient")
-@CrossOrigin("")
-@AllArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class PatientController {
 
+    @Autowired
     private PatientService patientService;
 
     @GetMapping("/id/{patientId}")
@@ -37,8 +41,24 @@ public class PatientController {
         }
     }
 
+    @GetMapping("/contact/{PatientContact}")
+    public ResponseEntity<?> findBypatientContact(@PathVariable String PatientContact) {
+        Patient pat = patientService.findBypatientContact(PatientContact);
+        if (pat != null) {
+            return ResponseEntity.ok(pat); // 200 OK
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient not found, " + PatientContact); // 404 NOT_FOUND
+        }
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> createPatient(@RequestBody Patient patient) {
+
+        Patient isExist = patientService.findBypatientId(patient.getPatientId());
+        if (isExist != null) {
+            return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + patient.getPatientId()); // 302 FOUND
+        }
+
         Patient pat = patientService.createPatient(patient);
         if (pat != null) {
             return new ResponseEntity<>(pat, HttpStatus.CREATED); // 201 CREATED
@@ -66,6 +86,7 @@ public class PatientController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/delete/{patientId}")
     public ResponseEntity<?> deletePatient(@PathVariable String patientId) {
         int isDeleted = patientService.deletePatient(patientId);

@@ -1,10 +1,12 @@
 package com.miniprojecttwo.controller;
 
 import com.miniprojecttwo.entity.Doctor;
+import com.miniprojecttwo.entity.Patient;
 import com.miniprojecttwo.service.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,12 @@ public class DoctorController {
 
     @PostMapping("/add")
     public ResponseEntity<?> createDoctor(@RequestBody Doctor doctor) {
+
+        Doctor isExist = doctorService.findByDoctorId(doctor.getDoctorId());
+        if (isExist != null) {
+            return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + doctor.getDoctorId());
+        }
+
         Doctor pat = doctorService.createDoctor(doctor);
         if (pat != null) {
             return new ResponseEntity<>(pat, HttpStatus.CREATED); // 201 CREATED
@@ -56,6 +64,7 @@ public class DoctorController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/delete/{DoctorId}")
     public ResponseEntity<?> deleteDoctor(@PathVariable String DoctorId) {
         int isDeleted = doctorService.deleteDoctor(DoctorId);
