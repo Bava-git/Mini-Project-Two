@@ -2,6 +2,7 @@ package com.miniprojecttwo.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
+
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired
@@ -24,16 +27,19 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
-        final String authHeader = request.getHeader("Authorization");
 
+        final String authHeader = request.getHeader("Authorization");
+        System.out.println("token from frontend :" + authHeader);
 
         String username = null;
-        String jwt = null;
+        String token = null;
 
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            jwt = authHeader.substring(7);
-            username = jwtUtil.extractUsername(jwt);
+            token = authHeader.substring(7);
+            System.out.println("after bearer :" + token);
+            username = jwtUtil.extractUsername(token);
+            System.out.println("after bearer :" + username);
         }
 
 
@@ -41,7 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
             var userDetails = userDetailsService.loadUserByUsername(username);
 
 
-            if (jwtUtil.validateToken(jwt, userDetails)) {
+            if (jwtUtil.validateToken(token, userDetails)) {
                 var authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

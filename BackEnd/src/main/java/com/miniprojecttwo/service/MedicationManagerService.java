@@ -32,6 +32,12 @@ public class MedicationManagerService {
 
         if (medic != null) {
             medic.setMedicineName(updateMedicationManager.getMedicineName());
+            medic.setMedicineDays(updateMedicationManager.getMedicineDays());
+            medic.setMedicineAfterFood(updateMedicationManager.isMedicineAfterFood());
+            medic.setMedicineMorning(updateMedicationManager.isMedicineMorning());
+            medic.setMedicineAfternoon(updateMedicationManager.isMedicineAfternoon());
+            medic.setMedicineNight(updateMedicationManager.isMedicineNight());
+            medic.setPatientappointmentId(updateMedicationManager.getPatientappointmentId());
             medic.setAppointmentDateTime(updateMedicationManager.getAppointmentDateTime());
             medic.setDoctorId(updateMedicationManager.getDoctorId());
             medic.setDoctorName(updateMedicationManager.getDoctorName());

@@ -29,6 +29,10 @@ public class AppointmentManagerService {
             app.setAppointmentDate(updateappointmentManager.getAppointmentDate());
             app.setAppointmentStartTime(updateappointmentManager.getAppointmentStartTime());
             app.setAppointmentEndTime(updateappointmentManager.getAppointmentEndTime());
+            app.setDoctorId((updateappointmentManager.getDoctorId()));
+            app.setDoctorName(updateappointmentManager.getDoctorName());
+            app.setDoctorEducation(updateappointmentManager.getDoctorEducation());
+            app.setDoctorSpecializedField(updateappointmentManager.getDoctorSpecializedField());
             return appointmentManagerRepository.save(app);
         }
 

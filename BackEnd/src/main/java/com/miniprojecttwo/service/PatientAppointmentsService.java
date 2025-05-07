@@ -31,8 +31,12 @@ public class PatientAppointmentsService {
             patapp.setAppointmentDateTime(updatePatientAppointments.getAppointmentDateTime());
             patapp.setPatientId(updatePatientAppointments.getPatientId());
             patapp.setPatientName(updatePatientAppointments.getPatientName());
+            patapp.setPatientAge(updatePatientAppointments.getPatientAge());
+            patapp.setPatientIssue(updatePatientAppointments.getPatientIssue());
             patapp.setDoctorId(updatePatientAppointments.getDoctorId());
             patapp.setDoctorName(updatePatientAppointments.getDoctorName());
+            patapp.setDoctorEducation(updatePatientAppointments.getDoctorEducation());
+            patapp.setDoctorSpecializedField(updatePatientAppointments.getDoctorSpecializedField());
             return patientAppointmentsRepository.save(patapp);
         }
 

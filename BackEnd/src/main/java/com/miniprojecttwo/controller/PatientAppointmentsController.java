@@ -1,10 +1,7 @@
 package com.miniprojecttwo.controller;
 
-import com.miniprojecttwo.entity.Credential;
 import com.miniprojecttwo.entity.PatientAppointments;
 import com.miniprojecttwo.service.PatientAppointmentsService;
-import com.miniprojecttwo.service.PatientAppointmentsService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

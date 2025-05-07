@@ -1,7 +1,6 @@
 package com.miniprojecttwo.controller;
 
 import com.miniprojecttwo.entity.AppointmentManager;
-import com.miniprojecttwo.entity.Credential;
 import com.miniprojecttwo.service.AppointmentManagerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
