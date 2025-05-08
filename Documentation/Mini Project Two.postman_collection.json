@@ -1,0 +1,1324 @@
+{
+	"info": {
+		"_postman_id": "03cf0a5c-cbb7-4f1d-aefc-bc9133935b9f",
+		"name": "Mini Project Two",
+		"description": "Patient Medicine and Appointment System App with Spring Boot and React Js",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40401865"
+	},
+	"item": [
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Create Patient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create Patient\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient_id\": \"P0001\",\r\n    \"patient_name\": \"Bava\",\r\n    \"patient_age\": 30,\r\n    \"patient_place\": \"Pattamadai\",\r\n    \"patient_email\": \"bava@gmail.com\",\r\n    \"patient_contact\": \"9988776655\",\r\n    \"patient_issue\": \"Whizing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patient/add",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patient",
+								"add"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `201 CREATED` – New data created successfully.\n    \n- `400 BAD_REQUEST`– Data not created.\n    \n- `302 FOUND`– Data not found."
+					},
+					"response": []
+				},
+				{
+					"name": "List of Patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"List of Patient\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}/patient",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patient"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `204 NO_CONTENT` - No data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Patient by Patient Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get an Patient by Patient Id\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient_id\": \"P0001\",\r\n    \"patient_name\": \"Bava\",\r\n    \"patient_age\": 30,\r\n    \"patient_place\": \"Pattamadai\",\r\n    \"patient_email\": \"bava@gmail.com\",\r\n    \"patient_contact\": \"9988776655\",\r\n    \"patient_issue\": \"Fever\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patient/id/P0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patient",
+								"id",
+								"P0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Patient by Patient Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get an Patient by Patient Email\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}/patient/email/bava@gmail.com",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patient",
+								"email",
+								"bava@gmail.com"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Patient data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Patient\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient_id\": \"P0001\",\r\n    \"patient_name\": \"Bava\",\r\n    \"patient_age\": 30,\r\n    \"patient_place\": \"Pattamadai\",\r\n    \"patient_email\": \"bava1@gmail.com\",\r\n    \"patient_contact\": \"9988776655\",\r\n    \"patient_issue\": \"Whizing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patient/update/P0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patient",
+								"update",
+								"P0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Patient data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Delete Patient\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}/patient/delete/P0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patient",
+								"delete",
+								"P0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				}
+			],
+			"description": "Patient can handle all patient related CRUD operation and also retrieve patient based on patient id\n\nand patient email id.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "Create Doctor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Doctor created\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"doctor_id\": \"D0001\",\r\n        \"doctor_name\": \"Rasi\",\r\n        \"doctor_education\": \"MBBS\",\r\n        \"doctor_specializedfield\": \".\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/doctor/add",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"doctor",
+								"add"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `201 CREATED` – New data created successfully.\n    \n- `400 BAD_REQUEST`– Data not created.\n    \n- `302 FOUND`– Data not found."
+					},
+					"response": []
+				},
+				{
+					"name": "List of Doctors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET Doctor list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}/doctor",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"doctor"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `204 NO_CONTENT` - No data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Doctor By Doctor Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET an Doctor\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}/doctor/id/D0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"doctor",
+								"id",
+								"D0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Doctor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Doctor\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"doctor_id\": \"D0001\",\r\n        \"doctor_name\": \"Rasi\",\r\n        \"doctor_education\": \"MBBS\",\r\n        \"doctor_specializedfield\": \"MD\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/doctor/update/D0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"doctor",
+								"update",
+								"D0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Doctor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Delete Doctor\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_URL}}/doctor/delete/D0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"doctor",
+								"delete",
+								"D0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				}
+			],
+			"description": "Doctor can handle all Doctor related CRUD operation and also retrieve Doctor based on Doctor id"
+		},
+		{
+			"name": "Appointment Manager",
+			"item": [
+				{
+					"name": "Create Appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointment_id\": \"A0001\",\r\n    \"appointment_date\": \"2025-05-14\",\r\n    \"appointment_start_time\": \"10:00\",\r\n    \"appointment_end_time\": \"13:30\",\r\n    \"doctor_id\": \"D1915\",\r\n    \"doctor_name\": \"Ashika\",\r\n    \"doctor_education\": \"MBBS\",\r\n    \"doctor_specializedfield\": \"Pulmonologist\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/appointment/add",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"appointment",
+								"add"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `201 CREATED` – New data created successfully.\n    \n- `400 BAD_REQUEST`– Data not created.\n    \n- `302 FOUND`– Data not found."
+					},
+					"response": []
+				},
+				{
+					"name": "List of Appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET Appointment list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/appointment",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"appointment"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `204 NO_CONTENT` - No data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Appointment by Appointment Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET an Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/appointment/id/A0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"appointment",
+								"id",
+								"A0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointment_id\": \"A0001\",\r\n    \"appointment_date\": \"2025-05-14\",\r\n    \"appointment_start_time\": \"17:00\",\r\n    \"appointment_end_time\": \"20:30\",\r\n    \"doctor_id\": \"D1915\",\r\n    \"doctor_name\": \"Ashika\",\r\n    \"doctor_education\": \"MBBS\",\r\n    \"doctor_specializedfield\": \"Pulmonologist\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/appointment/update/A0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"appointment",
+								"update",
+								"A0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Delete Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/appointment/delete/A0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"appointment",
+								"delete",
+								"A0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				}
+			],
+			"description": "Appointment Manager can handle all appointment related CRUD operation and also retrieve appointment based on appointment id"
+		},
+		{
+			"name": "Medication Manager",
+			"item": [
+				{
+					"name": "Create  Medication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicine_id\": \"M0001\",\r\n    \"patientappointment_id\": \"PA1234\",\r\n    \"appointment_datetime\": \"2025-05-12T17:00:00\",\r\n    \"patient_id\": \"P3671\",\r\n    \"patient_name\": \"Karthik\",\r\n    \"doctor_id\": \"D5150\",\r\n    \"doctor_name\": \"John\",\r\n    \"medicine_name\": \"Dolo 650\",\r\n    \"medicine_Morning\": true,\r\n    \"medicine_Afternoon\": true,\r\n    \"medicine_night\": true,\r\n    \"medicine_afterfood\": true,\r\n    \"medicine_days\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/medication/add",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"medication",
+								"add"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `201 CREATED` – New data created successfully.\n    \n- `400 BAD_REQUEST`– Data not created.\n    \n- `302 FOUND`– Data not found."
+					},
+					"response": []
+				},
+				{
+					"name": "List of Medication Manager",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET Medication list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/medication",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"medication"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `204 NO_CONTENT` - No data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Medication by  Medication Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET Appointment list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/medication/id/M0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"medication",
+								"id",
+								"M0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Update  Medication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicine_id\": \"M0001\",\r\n    \"patientappointment_id\": \"PA1234\",\r\n    \"appointment_datetime\": \"2025-05-12T17:00:00\",\r\n    \"patient_id\": \"P3671\",\r\n    \"patient_name\": \"Karthik\",\r\n    \"doctor_id\": \"D5150\",\r\n    \"doctor_name\": \"John\",\r\n    \"medicine_name\": \"Calpol 500mg\",\r\n    \"medicine_Morning\": true,\r\n    \"medicine_Afternoon\": true,\r\n    \"medicine_night\": true,\r\n    \"medicine_afterfood\": true,\r\n    \"medicine_days\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/medication/update/M0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"medication",
+								"update",
+								"M0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete  Medication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Appointment\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/medication/delete/M0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"medication",
+								"delete",
+								"M0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				}
+			],
+			"description": "Medication Manager can handle all medicine related CRUD operation and also retrieve medicine based on medicine id"
+		},
+		{
+			"name": "Patient Appointments",
+			"item": [
+				{
+					"name": "Create  Patient Appointments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create Patientappointments\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientappointment_id\": \"PA0001\",\r\n    \"appointment_datetime\": \"2025-05-12T17:00:00\",\r\n    \"patient_id\": \"P3671\",\r\n    \"patient_name\": \"Karthik\",\r\n    \"patient_age\": 23,\r\n    \"patient_issue\": \"Fever\",\r\n    \"doctor_id\": \"D5150\",\r\n    \"doctor_name\": \"John\",\r\n    \"doctor_education\": \"MBBS\",\r\n    \"doctor_specializedfield\": \".\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patientappointments/add",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patientappointments",
+								"add"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `201 CREATED` – New data created successfully.\n    \n- `400 BAD_REQUEST`– Data not created.\n    \n- `302 FOUND`– Data not found."
+					},
+					"response": []
+				},
+				{
+					"name": "List of Patient Appointments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET Patient Appointments list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patientappointments",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patientappointments"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `204 NO_CONTENT` - No data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Patient Appointments by   Patient Appointment Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET Patientappointments list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patientappointments/id/PA0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patientappointments",
+								"id",
+								"PA0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Update  Patient Appointments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Patientappointments\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientappointment_id\": \"PA0001\",\r\n    \"appointment_datetime\": \"2025-05-12T09:00:00\",\r\n    \"patient_id\": \"P3671\",\r\n    \"patient_name\": \"Karthik\",\r\n    \"patient_age\": 23,\r\n    \"patient_issue\": \"Fever\",\r\n    \"doctor_id\": \"D5150\",\r\n    \"doctor_name\": \"John\",\r\n    \"doctor_education\": \"MBBS\",\r\n    \"doctor_specializedfield\": \".\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patientappointments/update/PA0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patientappointments",
+								"update",
+								"PA0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Patient Appointments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update Patientappointments\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/patientappointments/delete/PA0001",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"patientappointments",
+								"delete",
+								"PA0001"
+							]
+						},
+						"description": "**Response Codes:**\n\n- `200 OK` – Retrieve All data successfully.\n    \n- `404 NOT_FOUND` – No found."
+					},
+					"response": []
+				}
+			],
+			"description": "Patient Appointment can handle all patient's appointment related CRUD operation and also retrieve patient's appointment based on patient appointment id"
+		},
+		{
+			"name": "Non-Auth",
+			"item": [
+				{
+					"name": "Patient login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code==200){\r",
+									"    pm.environment.set(\"token\", pm.response.json().token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"karthik\",\r\n    \"password\": \"pass\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/user/login",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "This will generate token role of the token is \"ROLE_PATIENT\""
+					},
+					"response": []
+				},
+				{
+					"name": "Register Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/auth/signup",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						},
+						"description": "This will create patient profile."
+					},
+					"response": []
+				},
+				{
+					"name": "Admin login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code==200){\r",
+									"    pm.environment.set(\"token\", pm.response.json().token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/user/login",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "This will generate token role of the token is \"ROLE_ADMIN\""
+					},
+					"response": []
+				},
+				{
+					"name": "Doctor login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code==200){\r",
+									"    pm.environment.set(\"token\", pm.response.json().token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ashika\",\r\n    \"password\": \"pass\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_URL}}/user/login",
+							"host": [
+								"{{base_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "This will generate token role of the token is \"ROLE_DOCTOR\""
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

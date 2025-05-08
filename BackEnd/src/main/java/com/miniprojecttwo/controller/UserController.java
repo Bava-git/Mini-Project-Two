@@ -2,8 +2,8 @@ package com.miniprojecttwo.controller;
 
 import com.miniprojecttwo.entity.Role;
 import com.miniprojecttwo.entity.User;
-import com.miniprojecttwo.jwt.CustomUserDetailsService;
-import com.miniprojecttwo.jwt.JwtUtil;
+import com.miniprojecttwo.config.CustomUserDetailsService;
+import com.miniprojecttwo.config.JwtUtil;
 import com.miniprojecttwo.repository.RoleRepository;
 import com.miniprojecttwo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
