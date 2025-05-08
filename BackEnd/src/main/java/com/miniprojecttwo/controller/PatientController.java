@@ -56,7 +56,7 @@ public class PatientController {
 
         Patient isExist = patientService.findBypatientId(patient.getPatientId());
         if (isExist != null) {
-            return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + patient.getPatientId()); // 302 FOUND
+            return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + patient.getPatientId());
         }
 
         Patient pat = patientService.createPatient(patient);

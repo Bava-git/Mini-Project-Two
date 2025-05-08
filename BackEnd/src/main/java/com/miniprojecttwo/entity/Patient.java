@@ -5,10 +5,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "patientdb")
 public class Patient {
 
@@ -47,4 +50,5 @@ public class Patient {
     @JsonProperty("patient_issue")
     @NotBlank
     private String patientIssue;
+
 }
